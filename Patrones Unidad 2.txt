@@ -1,0 +1,5 @@
+Iterador
+Funciona con HashMap.
+
+Composicion
+Funciona con estructuras de arbol.
