@@ -3,3 +3,93 @@ Funciona con HashMap.
 
 Composicion
 Funciona con estructuras de arbol.
+
+Patron Decorador
+	Su funcion principal es delegar responsabilidad (funciones o metods)
+	decorador no es sinonimo de accesorio, debe agregar una funcionalidad
+	evita la sobre explotacion de la herencia, 
+
+Supongamos que tenemos 3 clases
+----------------------------------
+Case_Base : ClaseEsp1 : ClaseEsp2|
+#------	  : #-------  :	#------- |
+---------------------------------|
++----()   : +----()   : +----()  |
++----()   : +----()   : +----()  |
+---------------------------------|
+
+
+si se quieren agregar mas responsabilidades se usa la clase base se agrega un objeto de la clase 
+
+Ejemplo de la Estructura:
+
+				|—————————————|
+				|<<interface>>|
+				|   Elemento  |
+				|—————————————|
+				| #---------- |
+				|—————————————|
+				| +Operacion()|
+				|             |
+				|—————————————|
+			    ^ 			  ^
+			   /			   \
+			  /					\
+			 /					|—————————————|
+|—————————————|					| <<abstract>>|
+|  EleConcre  |					|  Decorador  |
+|—————————————|					|—————————————|
+| #---------- |					|#Ele:Elemento|
+|—————————————|					|—————————————|
+| +Operacion()|					| +Decorador()|
+| +MP1()      |					| +Operacion()|
+|—————————————|					|—————————————|
+								^      ^      ^
+							   /	   |	   \
+							  /		   |		\
+				|—————————————||—————————————||—————————————|
+				| Decorador1  ||  Decorador2 || Decorador3  |
+				|—————————————||—————————————||—————————————|
+				| #---------- || #---------- || #---------- |
+				|—————————————||—————————————||—————————————|
+				| +operacion()|| +operacion()|| +operacion()|
+				| +ma1()      || +ma2()      ||             |
+				|—————————————||—————————————||—————————————|
+
+
+####EJERCICIO#####
+
+
+			|————————————————————|
+			|	 <<interface>>	 |
+			|   	Ventana      |
+			|————————————————————|
+			| 			         |
+			|————————————————————|
+			| +dibujar()         |
+			| +getNombre():String|
+			|————————————————————|
+			    ^ 			  ^
+			   /<<implements>> \
+			  /					\
+			 /				|——————————————————————|
+|———————————————————————|	| 	  <<abstract>>	   |
+| 	  VentanaSimple 	|	|  		Decorador      |
+|———————————————————————|	|——————————————————————|
+| -n:String 			|	|#v:Ventana   		   |
+|———————————————————————|	|——————————————————————|
+| +VentanaSimple()		|	| +Decorador(o:Ventana)|
+| +dibujar(){System.out}|	| +dibujar(){}		   |
+| +getNombre(return nom)|	| +getNombre(){}	   |
+|———————————————————————|	|——————————————————————|
+								       ^
+							   	   	   |
+							  		   |
+								|————————————————|
+								| DecoradorBoton |
+								|————————————————|
+								| 			  	 |
+								|————————————————|
+								| +operacion()   |
+								|                |
+								|————————————————|

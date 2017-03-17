@@ -123,9 +123,18 @@ public class MenuTestDrive {
                 "Angela's favorite. You know that.",
                 true,
                 11.11,1));
-
+        
         Waitress waitress = new Waitress(allMenus);
-
+        waitress.printMenu();
+        
+        System.out.println("\n\n#############################\n#############################\n#############################\n");
+        
+        coffeeMenu.remove(new MenuItem(
+                "Caramel Macchiato",
+                "Angela's favorite. You know that.",
+                true,
+                11.11,1));
+        
         waitress.printMenu();
     }
 }

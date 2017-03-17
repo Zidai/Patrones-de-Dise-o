@@ -24,7 +24,10 @@ public class Menu extends MenuComponent {
     }
 
     public void remove(MenuComponent menuComponent) {
-        menuComponents.remove(menuComponent);
+        if (menuComponent instanceof MenuItem){
+            
+            menuComponents.remove(menuComponent);
+        }
     }
 
     public int getNumElementos(){
