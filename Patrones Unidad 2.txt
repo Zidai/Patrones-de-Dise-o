@@ -134,3 +134,104 @@ Si quiere agregar metodos espesificos (propios) en la clase concreta o en algun 
 
 
 
+Aplicar PATRON DECORADOR para una clase de arreglo de filas y columnas ejem
+
+  |2 5 6|
+  |1 4 3|
+  |1 8 4|
+
+La clase base :
+  crear la matriz argregandole sus valores
+  mostrar los valores
+  obtener el determinante
+Dos decoradores:
+  1.-Invertir la matriz
+
+  |2 5 6|   |2 1 1|  
+  |1 4 3| = |5 4 8|
+  |1 8 4|   |1 8 4|
+
+  2.-Dada la matriz inverza obtener la matriz identidad
+
+  |2 5 6|   |? ? ?|   |1 0 0|  
+  |1 4 3| x |? ? ?| = |0 1 0|
+  |1 8 4|   |? ? ?|   |0 0 1|
+
+
+
+
+Patron Observador
+
+
+                |———————————————————————————|
+                |       <<interface>>       |
+                |          Sujeto           |
+                |———————————————————————————|——————|
+                | +agregarObs(ob:Observador)|      |
+                | +removerObs(ob:Observador)|      |
+                | +notigicar()              |      |
+                |———————————————————————————|      |
+                     ^                             |
+                    /                              | 
+                   /<<Implementa>>                 |
+                  /                                |
+|——————————————————————————————————|               |
+|          ConjuntoDatos           |               |
+|——————————————————————————————————|               |
+| -datos:ArrayList                 |               |
+| -obs:ArrayList<Observadores>     |               |
+|——————————————————————————————————|               |
+| +ConjuntoDatos(){                |               |
+|      datos=new ArrayList()<Int.>;|               |
+|      obs=new ArrayList()<Int.>;  |               |
+|  }                               |               |
+| +agregarObs(o:Observador){       |<——————————————————————————|
+|     obs.add(o);                  |               |           |
+|  }                               |               |           |
+| +removerObs(o:Observador){       |               |           |
+|     if(obs.size(o)>0){           |               |           |
+|           obs.remove(o);         |               |           |
+|      }                           |               |           |
+|  }                               |               |           |
+| +notigicar(){                    |               |           |
+|      S.o.p("Actualizado")        |               |           |
+|  }                               |               |           |
+|——————————————————————————————————|               |           |
+                                                   |           |
+                                                   |           |
+                                                   |           |
+                |———————————————|                  |           |
+                | <<interface>> | <<Notificacion>> |           |
+                |   Observador  |<—————————————————|           |<<Composicion>>
+                |———————————————|                              |
+                | +actualizar() |                              |
+                |———————————————|                              |
+                     ^                                         |
+                    /                                          |
+                   /<<Implementa>>                             |              
+                  /                                            |
+|—————————————————————————————————————————————|                |
+|             Imprimir                        |                |
+|—————————————————————————————————————————————|                |
+| -suj:Sujeto                                 |                |
+|—————————————————————————————————————————————|                |
+| +actualiza(s:Sujeto){                       |                |
+|      suj=s;                                 |                |
+|      Imprimir();                            |                |
+|  }                                          |                |
+| +agregarObs(o:Observador){                  |                |
+|     obs.add(o);                             |                |
+|  }                                          |                |
+| +imprimir(){ //Este no es el constructor    |                |
+|     datos:ArrayList<integer>=suj.GetDatos();|♦———————————————|
+|     it:Iterator=datos.iterator()            |
+|     while(it.hosNext()){                    |
+|        S.o.p(""+(int)it.next());            |
+|     }                                       |
+|  }                                          |
+| +Imprimir(s:Sujeto){                        |
+|      suj=s;                                 |
+|      suj.agregarObs(this)                   |
+|  }                                          |
+|—————————————————————————————————————————————|
+
