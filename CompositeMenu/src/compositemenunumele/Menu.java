@@ -1,4 +1,4 @@
-package compositemenu;
+package compositemenunumele;
 /**
  * @author Zidai
  */

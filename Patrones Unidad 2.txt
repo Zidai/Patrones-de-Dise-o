@@ -1,4 +1,4 @@
-gIterador
+Iterador
 Funciona con HashMap.
 
 Composicion
@@ -161,7 +161,7 @@ Dos decoradores:
 
 
 Patron Observador
-
+Eventos o Triggers
 
                 |———————————————————————————|
                 |       <<interface>>       |
@@ -235,3 +235,14 @@ Patron Observador
 |  }                                          |
 |—————————————————————————————————————————————|
 
+
+
+
+
+
+
+
+unidad 3 Trabajo viernes 7 de abril
+
+
+Unidad 4 lectura en la plataforma

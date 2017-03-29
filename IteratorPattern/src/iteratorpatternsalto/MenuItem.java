@@ -1,4 +1,4 @@
-package iteratorpattern;
+package iteratorpatternsalto;
 /**
  * @author Zidai
  */

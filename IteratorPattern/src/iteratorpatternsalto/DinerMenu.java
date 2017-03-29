@@ -1,4 +1,4 @@
-package iteratorpattern;
+package iteratorpatternsalto;
 public class DinerMenu {
   static final int MAX_ITEMS = 6;
   int numberOfItems = 0;
@@ -13,6 +13,7 @@ public class DinerMenu {
     addItem("4.- Hotdog", "A hot dog, with saurkraut, relish, onions, topped with cheese", false,  3.05);
     addItem("5.- Memelitas", "Pequeñas tortillas de masa, gruesas, con agujeritos donde se le echa relleno delicioso", false,  3.05);
     addItem("6.- Chilaquiles", "Son chilaquiles!", true,  3.05);
+    addItem("7.- Huevos", "con jamón", true,  3.05);
   }
   public void addItem(String name, String description, boolean vegetarian, double price){
     MenuItem menuItem = new MenuItem(name, description, vegetarian, price);
