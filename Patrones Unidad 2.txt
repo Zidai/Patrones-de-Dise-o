@@ -246,3 +246,30 @@ unidad 3 Trabajo viernes 7 de abril
 
 
 Unidad 4 lectura en la plataforma
+
+########################################## COMPONENTES ##########################################
+
+
+Se comunican a traves de las interfaces que permiten configurar algunos aspectos,
+
+
+|————————————|    Embona    |————————————|
+|            |——(        0——|            |
+| Componente |              | Componente |
+|     A      |      NO      |      B     |
+|            |——( Embona )——|            |
+|————————————|              |————————————|
+
+
+
+                    |———|
+                    | A |
+|————————————|      | D |      |————————————|
+|            |——(0——| A |——(0——|            |
+| Componente |      | P |      | Componente |
+|     A      |      | T |      |      B     |
+|            |——(0——| A |——0)——|            |
+|————————————|      | D |      |————————————|
+                    | O |
+                    | R |                    
+                    |———|
