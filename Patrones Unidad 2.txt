@@ -10,13 +10,13 @@ Patron Decorador
 	evita la sobre explotacion de la herencia, 
 
 Supongamos que tenemos 3 clases
-----------------------------------
-Case_Base : ClaseEsp1 : ClaseEsp2|
-#------	  : #-------  :	#------- |
----------------------------------|
-+----()   : +----()   : +----()  |
-+----()   : +----()   : +----()  |
----------------------------------|
+|—————————————————————————————————|
+|Case_Base : ClaseEsp1 : ClaseEsp2|
+|: #------ : #-------  : #------- |
+|—————————————————————————————————|
+|+----()   : +----()   : +----()  |
+|+----()   : +----()   : +----()  |
+|—————————————————————————————————|
 
 
 si se quieren agregar mas responsabilidades se usa la clase base se agrega un objeto de la clase 
@@ -273,3 +273,61 @@ Se comunican a traves de las interfaces que permiten configurar algunos aspectos
                     | O |
                     | R |                    
                     |———|
+
+
+
+
+    Creacion de Componentes en Java
+
+                   >GUI
+                  /
+            Beans —>Entidad
+                  \ 
+                   >Contorl             
+
+                                        |————————————————|
+                                        | <<componente>> |
+    1.- DISEÑO                          |      Clase     |
+                                        |————————————————|
+                                        |-art1           |
+      Interfaces                        |-art2           |
+          |                             |————————————————|
+          |________/ Salida ----------->|-getArt1()      |
+                   \ Entrada ---------->|-setArt1()      |
+                                        |————————————————| 
+    2.-Codificacion
+
+    3.-Pruevas
+
+    4.-Generacion del Componente
+
+    5.- Liberacion
+
+
+EJERCICIO
+
+Componente: CampoDato
+ -Simple
+     1) Campo de Texto
+        +Sollo acepte letras y espacios
+        +longitud maxima y minima
+
+
+   |———————————————|
+   |   jTextField  |
+   |———————————————|
+   |               |                              
+   |———————————————|                              
+           ^                                         
+           |                                         
+           |                                                                                    
+|————————————————————|                
+|    CampoTexto      |                
+|————————————————————|                
+| -longMax:int       |
+| -longMin:int       |                
+|————————————————————|                
+| +setLongMax(s:int) |                
+|                    |                
+| +setlongMin(s:int) |
+|————————————————————|
