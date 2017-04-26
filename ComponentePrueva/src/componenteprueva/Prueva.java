@@ -40,7 +40,7 @@ public class Prueva extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("VEHICULO:");
+        jLabel1.setText("VEHICULO");
 
         jLabel2.setText("MARCA:");
 
