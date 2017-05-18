@@ -331,3 +331,57 @@ Componente: CampoDato
 |                    |                
 | +setlongMin(s:int) |
 |————————————————————|
+
+
+Aplicacion: Creacion de un examen de opcion multiple donde el componente "Reactivo" consta de los elementos:
+    +Pregunta: Texto (label)
+    +Opciones: Conjunto de jRadioButton
+    +Respuesta: uno de los jRadioButton
+
+Diseño UML: 
+
+              |———————————————|
+              |    JPanel     |
+              |———————————————|
+              | +verificar()  |                              
+              |———————————————| 
+                      ♦ 
+                      |
+    ————————————————————————————————————
+    |                 |                |
+|————————| |————————————————————| |—————————|
+| JLabel | |      Opciones      | | Integer |
+|————————| |————————————————————| |—————————|
+| #texto | | op: []JRadioButton | |         |
+|————————| |————————————————————| |—————————|
+
+
+Final
+
+COMPONENTES EMPRESARIALES DE JAVA
+
+Aplicaciones empresarial con componentes de Java 
+
+Tecnologia de java (ediciones)
+
+JSE estadar
+
+JME Micro
+
+JEE Empresarial
+
+
+Aplicacion Empresarial Java:
+  +Aplicacion Web
+  +Manipulacion de Base de Datos
+  +Manejo Distribuido
+
+TUTORIAL JEE 7 JAVA
+
+
+
+
+
+
+
+
