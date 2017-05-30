@@ -12,11 +12,18 @@
         <title>SCP</title>
     </head>
     <body>
-        <h1>Sistema de citas para pacientes</h1>
-        <a href="altaPaciente.jsp">Registrar un paciente</a>
-        <br>
-        <a href="citas.jsp">Agendar una cita</a>
-        <br>
-        <a href="listaPacientes.jsp">Lista de pacientes</a>
+        <center>
+            <h1>Sistema de citas para pacientes</h1>
+            <a href="altaPaciente.jsp">Registrar un paciente</a>
+            <br>
+            <br>
+            <a href="citas.jsp">Agendar una cita</a>
+            <br>
+            <br>
+            <a href="listaPacientes.jsp">Lista de pacientes</a>
+            <br>
+            <br>
+            <a href="listaCitas.jsp">Lista de Citas</a>
+        </center>>
     </body>
 </html>

@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.transaction.UserTransaction;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Calendar;
 
 /**
  *
@@ -30,11 +31,31 @@ import java.time.Period;
 @WebServlet(name = "ListaPacientes", urlPatterns = {"/ListaPacientes"})
 public class ListaPacientes extends HttpServlet {
     
+    public String mesAString(int m){
+        switch(m){
+            case 0: return "ENERO";
+            case 1: return "FEBRERO";
+            case 2: return "MARZO";
+            case 3: return "ABRIL";
+            case 4: return "MAYO";
+            case 5: return "JUNIO";
+            case 6: return "JULIO";
+            case 7: return "AGOSTO";
+            case 8: return "SEPTIEMBRE";
+            case 9: return "OCTUBRE";
+            case 10: return "NOVIEMBRE";
+            case 11: return "DICIEMBRE";
+        }
+        return "";
+    }
+    
     @PersistenceUnit
     private EntityManagerFactory emf;
     @Resource
     private UserTransaction utx;
-
+    
+    
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
@@ -80,11 +101,15 @@ public class ListaPacientes extends HttpServlet {
                 String estatura = p.getEstatura().toString();
                 String mtscms = estatura.charAt(0) + "mts. " + estatura.charAt(1) 
                     +""+ estatura.charAt(2) +" cms.";
-            
+                Date fechNac=p.getFecha();
+                Calendar calF=Calendar.getInstance();
+                calF.setTime(fechNac);
             //iniciando la tabla
               out.println("<tr><td class='datos'>"+p.getIdpaciente()+"</td>"
                   +"<td class='datos'>"+p.getNombre()+"</td>"
-                  +"<td class='datos'>"+p.getFecha().toString()+"</td>"
+                  +"<td class='datos'>"+calF.get(Calendar.DAY_OF_MONTH)+
+                        " de "+mesAString(calF.get(Calendar.MONTH))+
+                        " del "+calF.get(Calendar.YEAR)+"</td>"
                   +"<td class='datos'>"+edad+"</td>"        
                   +"<td class='datos'>"+p.getSexo()+"</td>"
                   +"<td class='datos'>"+ mtscms +"</td>"
