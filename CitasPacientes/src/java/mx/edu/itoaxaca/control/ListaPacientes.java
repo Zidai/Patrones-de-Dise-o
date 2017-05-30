@@ -55,10 +55,10 @@ public class ListaPacientes extends HttpServlet {
             out.println("<title>Servlet ListaPacientes</title>");            
             out.println("</head>");
             out.println("<body>");
-
+            out.println("<center>");
             out.println("<h1>Servlet Lista de pacientes </h1>");
             out.println("<table aling='left' width='60%' border=1>");
-            out.println("<tr><td class='datos'ID</td>"
+            out.println("<tr><td class='datos'>ID</td>"
                 +"<td class='datos'>Nombre</td>"
                 +"<td class='datos'>Fecha Nacimiento</td>"
                 +"<td class='datos'>Edad</td>"
@@ -97,8 +97,9 @@ public class ListaPacientes extends HttpServlet {
             out.println("<h3>Promedio de edades: "
                     +promedioEdades/ listaPacientes.size() +"</h3>");
             out.println("<hr>");
-            out.println("<br>");
+            out.println("<br><br>");
             out.println("<a href=\"index.jsp\">Index</a>");
+            out.println("</center>");
             out.println("</body>");
             out.println("</html>");
         }
