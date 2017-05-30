@@ -1,19 +1,22 @@
 <%-- 
     Document   : index
-    Created on : 18/05/2017, 12:16:09 PM
+    Created on : 22/05/2017, 11:13:09 AM
     Author     : Zidai
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>SCP</title>
     </head>
     <body>
-        <h2>SISTEMA DE SITAS MEDICAS PARA PACIENTES</h2>
-        <a href="AgregarPaciente.jsp">Agregar Paciente</a>
+        <h1>Sistema de citas para pacientes</h1>
+        <a href="altaPaciente.jsp">Registrar un paciente</a>
+        <br>
+        <a href="citas.jsp">Agendar una cita</a>
+        <br>
+        <a href="listaPacientes.jsp">Lista de pacientes</a>
     </body>
 </html>

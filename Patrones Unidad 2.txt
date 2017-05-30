@@ -378,6 +378,34 @@ Aplicacion Empresarial Java:
 
 TUTORIAL JEE 7 JAVA
 
+1 servira para elegir al paciente
+
+  <datalist>
+
+  En el servlet
+  a) Obtener la lista de p
+    list <Pacientes> pacieentes= cp.findByEntitnes
+  
+  b) Formar la lista con formulario
+   out.println ("<form id='selpa' action='selecinar'>"");
+               ("<form id='selpa' action='selecinar'>"");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
