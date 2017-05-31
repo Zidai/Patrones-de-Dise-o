@@ -7,32 +7,31 @@ package mx.edu.itoaxaca.control;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import static java.rmi.Naming.list;
-import static java.util.Collections.list;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import javax.annotation.Resource;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import mx.edu.itoaxaca.modelo.Paciente;
-import java.util.Collections.*;
-import java.util.List;
-import javax.annotation.Resource;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceUnit;
 import javax.transaction.UserTransaction;
+import mx.edu.itoaxaca.modelo.Cita;
+import mx.edu.itoaxaca.modelo.Paciente;
 
 /**
  *
  * @author Zidai
  */
-@WebServlet(name = "AgregarCita", urlPatterns = {"/AgregarCita"})
-public class AgregarCita extends HttpServlet {
-    @PersistenceUnit
-    private EntityManagerFactory emf;
-    @Resource
-    private UserTransaction utx;
-    static int idPaciente;
+@WebServlet(name = "BusquedaDia", urlPatterns = {"/BusquedaDia"})
+public class BusquedaDia extends HttpServlet {
+    
+    static int anio, mes;
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,32 +42,45 @@ public class AgregarCita extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        PacienteJpaController cp = new PacienteJpaController(utx, emf);
-        List <Paciente> pacientes = cp.findPacienteEntities();
+        
         
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AgregarCita</title>");            
+            out.println("<title>Servlet BusquedaDia</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AgregarCita at " + request.getContextPath() + "</h1>");
-            
-            out.println("<form id='selpa' action='NuevaCita'>");
-            out.println("<select name='idpac'>");
-            for(int i=0;i<pacientes.size();i++){
-                out.println("<option value="+pacientes.get(i).getIdpaciente()+">"+pacientes.get(i).getNombre()+"</option>");
+            out.println("<center>");
+            out.println("<h1>Mayo</h1>");
+            out.println("<br>");
+            out.println("<br>");
+            LocalDate dia;
+            dia= LocalDate.now();
+            int numeroMes = dia.getMonthValue();
+            mes = numeroMes;
+            anio = dia.getYear();
+            int hoy= dia.getDayOfMonth();
+            int controlSem=1;
+            out.println("<table aling='center' width='60%' border=1>");
+            out.println("<tr>");
+            for(int i=1;i<=dia.lengthOfMonth();i++){
+                out.println("<td><a href='ResultadosDia?DiaCita="+i+"'>"+i+"</a></td>");
+                controlSem++;
+                if(controlSem==8){
+                out.println("</tr>");
+                    controlSem=1;
+                }
+                //diasRestantes[j]=i;
             }
-            out.println("</select><input type='submit' onclick='buscar' value='ENVIAR'></input>");
-            out.println("</form>");
-            
+            out.println("</table>");
+            out.println("</center>");
             out.println("</body>");
             out.println("</html>");
         }

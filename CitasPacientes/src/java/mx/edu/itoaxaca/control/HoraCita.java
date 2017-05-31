@@ -104,12 +104,6 @@ public class HoraCita extends HttpServlet {
             }
         }
         
-        for(int i=0;i<listaHoras.size();i++){
-            System.out.println("******************************************************************************************************");
-            System.out.println("Cita "+(i+1)+" "+listaHoras.get(i));
-        }
-        
-        
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");

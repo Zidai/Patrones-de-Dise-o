@@ -7,33 +7,19 @@ package mx.edu.itoaxaca.control;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import static java.rmi.Naming.list;
-import static java.util.Collections.list;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import mx.edu.itoaxaca.modelo.Paciente;
-import java.util.Collections.*;
-import java.util.List;
-import javax.annotation.Resource;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceUnit;
-import javax.transaction.UserTransaction;
 
 /**
  *
  * @author Zidai
  */
-@WebServlet(name = "AgregarCita", urlPatterns = {"/AgregarCita"})
-public class AgregarCita extends HttpServlet {
-    @PersistenceUnit
-    private EntityManagerFactory emf;
-    @Resource
-    private UserTransaction utx;
-    static int idPaciente;
-    
+@WebServlet(name = "BusquedaPaciente", urlPatterns = {"/BusquedaPaciente"})
+public class BusquedaPaciente extends HttpServlet {
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -43,32 +29,24 @@ public class AgregarCita extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        PacienteJpaController cp = new PacienteJpaController(utx, emf);
-        List <Paciente> pacientes = cp.findPacienteEntities();
-        
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AgregarCita</title>");            
+            out.println("<title>Servlet BusquedaPaciente</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AgregarCita at " + request.getContextPath() + "</h1>");
-            
-            out.println("<form id='selpa' action='NuevaCita'>");
-            out.println("<select name='idpac'>");
-            for(int i=0;i<pacientes.size();i++){
-                out.println("<option value="+pacientes.get(i).getIdpaciente()+">"+pacientes.get(i).getNombre()+"</option>");
-            }
-            out.println("</select><input type='submit' onclick='buscar' value='ENVIAR'></input>");
+            out.println("<center>");
+            out.println("<h1>Busqueda un Paciente at</h1>");
+            out.println("<form id='selpa' action='ResultadosNombre' method='post'>");
+            out.println("<input type='text' name='NomPac' placeholder='Escribe un Nombre'>");
+            out.println("</input><input type='submit' onclick='buscar' value='Buscar'></input>");
             out.println("</form>");
-            
+            out.println("</center>");
             out.println("</body>");
             out.println("</html>");
         }
