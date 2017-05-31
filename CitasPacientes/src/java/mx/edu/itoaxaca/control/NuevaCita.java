@@ -74,22 +74,22 @@ public class NuevaCita extends HttpServlet {
         CitaJpaController controlCita = new CitaJpaController(utx, emf);
         PacienteJpaController controlPaciente = new PacienteJpaController(utx, emf);
         
+        int idPaciente = Integer.parseInt(request.getParameter("idpac")); //viene del select
+        Paciente p = controlPaciente.findPaciente(idPaciente);
+        //creando lista de citas del paciente actual
+        List<Cita> listaTodasCitas = controlCita.findCitaEntities();
+        ArrayList<Integer> listaCitas = new ArrayList<Integer>();
+        
+        for(int i=0;i<listaTodasCitas.size();i++){
+            Date a = listaTodasCitas.get(i).getFecha();
+            Calendar b= Calendar.getInstance();
+            b.setTime(a);
+            int d=b.get(Calendar.DAY_OF_MONTH);
+            listaCitas.add(d);
+        }
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            PacienteJpaController cp = new PacienteJpaController(utx, emf);
-            int idPaciente = Integer.parseInt(request.getParameter("idpac")); //viene del select
-            Paciente p = controlPaciente.findPaciente(idPaciente);
-            //creando lista de citas del paciente actual
-            List<Cita> listaTodasCitas = controlCita.findCitaEntities();
-            ArrayList<Integer> listaCitas = new ArrayList<Integer>();
             
-            for(int i=0;i<listaTodasCitas.size();i++){
-                Date a = listaTodasCitas.get(i).getFecha();
-                Calendar b= Calendar.getInstance();
-                b.setTime(a);
-                int d=b.get(Calendar.DAY_OF_MONTH);
-                listaCitas.add(d);
-            }
             
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -97,6 +97,7 @@ public class NuevaCita extends HttpServlet {
             out.println("<title>Servlet NuevaCita</title>");            
             out.println("</head>");
             out.println("<body>");
+            out.println("<center>");
             out.println("<h1>Mayo</h1>");
             out.println("<label>Paciente: "+p.getNombre()+"</label>");
             out.println("<br>");
@@ -138,6 +139,7 @@ public class NuevaCita extends HttpServlet {
                 
             }
             out.println("</table>");
+            out.println("</center>");
             out.println("</body>");
             out.println("</html>");
         }

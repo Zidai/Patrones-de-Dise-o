@@ -8,21 +8,13 @@ package mx.edu.itoaxaca.control;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import javax.annotation.Resource;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceUnit;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.transaction.UserTransaction;
-import mx.edu.itoaxaca.modelo.Cita;
-import mx.edu.itoaxaca.modelo.Paciente;
+
 
 /**
  *
@@ -66,7 +58,7 @@ public class BusquedaDia extends HttpServlet {
             int numeroMes = dia.getMonthValue();
             mes = numeroMes;
             anio = dia.getYear();
-            int hoy= dia.getDayOfMonth();
+            //int hoy= dia.getDayOfMonth();
             int controlSem=1;
             out.println("<table aling='center' width='60%' border=1>");
             out.println("<tr>");
