@@ -14,9 +14,9 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.transaction.UserTransaction;
-import mx.edu.itoaxaca.modelo.Paciente;
 import mx.edu.itoaxaca.control.exceptions.NonexistentEntityException;
 import mx.edu.itoaxaca.control.exceptions.RollbackFailureException;
+import mx.edu.itoaxaca.modelo.Paciente;
 
 /**
  *

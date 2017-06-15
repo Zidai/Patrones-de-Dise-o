@@ -116,7 +116,7 @@ public class ElegirNuevoDia extends HttpServlet {
             out.println("<table>");
             out.println("<tr>");
             for(int i=1;i<=dia.lengthOfMonth();i++){
-                if(i>=hoy && listaCitas.size()<10){
+                if(i>=hoy && listaCitas.size()<70){
                     out.println("<td><a href='NuevaHoraCita?DiaCita="+i+
                             "&IdPaciente="+idPaciente+
                             "&IdCita="+idCita+

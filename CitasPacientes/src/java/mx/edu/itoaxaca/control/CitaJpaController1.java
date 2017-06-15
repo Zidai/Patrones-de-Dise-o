@@ -13,6 +13,7 @@ import javax.persistence.criteria.Root;
 import mx.edu.itoaxaca.modelo.Paciente;
 import mx.edu.itoaxaca.modelo.Consulta;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -39,8 +40,8 @@ public class CitaJpaController1 implements Serializable {
     }
 
     public void create(Cita cita) throws RollbackFailureException, Exception {
-        if (cita.getConsultaList() == null) {
-            cita.setConsultaList(new ArrayList<Consulta>());
+        if (cita.getConsultaCollection() == null) {
+            cita.setConsultaCollection(new ArrayList<Consulta>());
         }
         EntityManager em = null;
         try {
@@ -51,24 +52,24 @@ public class CitaJpaController1 implements Serializable {
                 paciente = em.getReference(paciente.getClass(), paciente.getIdpaciente());
                 cita.setPaciente(paciente);
             }
-            List<Consulta> attachedConsultaList = new ArrayList<Consulta>();
-            for (Consulta consultaListConsultaToAttach : cita.getConsultaList()) {
-                consultaListConsultaToAttach = em.getReference(consultaListConsultaToAttach.getClass(), consultaListConsultaToAttach.getIdconsulta());
-                attachedConsultaList.add(consultaListConsultaToAttach);
+            Collection<Consulta> attachedConsultaCollection = new ArrayList<Consulta>();
+            for (Consulta consultaCollectionConsultaToAttach : cita.getConsultaCollection()) {
+                consultaCollectionConsultaToAttach = em.getReference(consultaCollectionConsultaToAttach.getClass(), consultaCollectionConsultaToAttach.getIdconsulta());
+                attachedConsultaCollection.add(consultaCollectionConsultaToAttach);
             }
-            cita.setConsultaList(attachedConsultaList);
+            cita.setConsultaCollection(attachedConsultaCollection);
             em.persist(cita);
             if (paciente != null) {
                 paciente.getCitaList().add(cita);
                 paciente = em.merge(paciente);
             }
-            for (Consulta consultaListConsulta : cita.getConsultaList()) {
-                Cita oldCitaOfConsultaListConsulta = consultaListConsulta.getCita();
-                consultaListConsulta.setCita(cita);
-                consultaListConsulta = em.merge(consultaListConsulta);
-                if (oldCitaOfConsultaListConsulta != null) {
-                    oldCitaOfConsultaListConsulta.getConsultaList().remove(consultaListConsulta);
-                    oldCitaOfConsultaListConsulta = em.merge(oldCitaOfConsultaListConsulta);
+            for (Consulta consultaCollectionConsulta : cita.getConsultaCollection()) {
+                Cita oldCitaOfConsultaCollectionConsulta = consultaCollectionConsulta.getCita();
+                consultaCollectionConsulta.setCita(cita);
+                consultaCollectionConsulta = em.merge(consultaCollectionConsulta);
+                if (oldCitaOfConsultaCollectionConsulta != null) {
+                    oldCitaOfConsultaCollectionConsulta.getConsultaCollection().remove(consultaCollectionConsulta);
+                    oldCitaOfConsultaCollectionConsulta = em.merge(oldCitaOfConsultaCollectionConsulta);
                 }
             }
             utx.commit();
@@ -94,19 +95,19 @@ public class CitaJpaController1 implements Serializable {
             Cita persistentCita = em.find(Cita.class, cita.getIdcita());
             Paciente pacienteOld = persistentCita.getPaciente();
             Paciente pacienteNew = cita.getPaciente();
-            List<Consulta> consultaListOld = persistentCita.getConsultaList();
-            List<Consulta> consultaListNew = cita.getConsultaList();
+            Collection<Consulta> consultaCollectionOld = persistentCita.getConsultaCollection();
+            Collection<Consulta> consultaCollectionNew = cita.getConsultaCollection();
             if (pacienteNew != null) {
                 pacienteNew = em.getReference(pacienteNew.getClass(), pacienteNew.getIdpaciente());
                 cita.setPaciente(pacienteNew);
             }
-            List<Consulta> attachedConsultaListNew = new ArrayList<Consulta>();
-            for (Consulta consultaListNewConsultaToAttach : consultaListNew) {
-                consultaListNewConsultaToAttach = em.getReference(consultaListNewConsultaToAttach.getClass(), consultaListNewConsultaToAttach.getIdconsulta());
-                attachedConsultaListNew.add(consultaListNewConsultaToAttach);
+            Collection<Consulta> attachedConsultaCollectionNew = new ArrayList<Consulta>();
+            for (Consulta consultaCollectionNewConsultaToAttach : consultaCollectionNew) {
+                consultaCollectionNewConsultaToAttach = em.getReference(consultaCollectionNewConsultaToAttach.getClass(), consultaCollectionNewConsultaToAttach.getIdconsulta());
+                attachedConsultaCollectionNew.add(consultaCollectionNewConsultaToAttach);
             }
-            consultaListNew = attachedConsultaListNew;
-            cita.setConsultaList(consultaListNew);
+            consultaCollectionNew = attachedConsultaCollectionNew;
+            cita.setConsultaCollection(consultaCollectionNew);
             cita = em.merge(cita);
             if (pacienteOld != null && !pacienteOld.equals(pacienteNew)) {
                 pacienteOld.getCitaList().remove(cita);
@@ -116,20 +117,20 @@ public class CitaJpaController1 implements Serializable {
                 pacienteNew.getCitaList().add(cita);
                 pacienteNew = em.merge(pacienteNew);
             }
-            for (Consulta consultaListOldConsulta : consultaListOld) {
-                if (!consultaListNew.contains(consultaListOldConsulta)) {
-                    consultaListOldConsulta.setCita(null);
-                    consultaListOldConsulta = em.merge(consultaListOldConsulta);
+            for (Consulta consultaCollectionOldConsulta : consultaCollectionOld) {
+                if (!consultaCollectionNew.contains(consultaCollectionOldConsulta)) {
+                    consultaCollectionOldConsulta.setCita(null);
+                    consultaCollectionOldConsulta = em.merge(consultaCollectionOldConsulta);
                 }
             }
-            for (Consulta consultaListNewConsulta : consultaListNew) {
-                if (!consultaListOld.contains(consultaListNewConsulta)) {
-                    Cita oldCitaOfConsultaListNewConsulta = consultaListNewConsulta.getCita();
-                    consultaListNewConsulta.setCita(cita);
-                    consultaListNewConsulta = em.merge(consultaListNewConsulta);
-                    if (oldCitaOfConsultaListNewConsulta != null && !oldCitaOfConsultaListNewConsulta.equals(cita)) {
-                        oldCitaOfConsultaListNewConsulta.getConsultaList().remove(consultaListNewConsulta);
-                        oldCitaOfConsultaListNewConsulta = em.merge(oldCitaOfConsultaListNewConsulta);
+            for (Consulta consultaCollectionNewConsulta : consultaCollectionNew) {
+                if (!consultaCollectionOld.contains(consultaCollectionNewConsulta)) {
+                    Cita oldCitaOfConsultaCollectionNewConsulta = consultaCollectionNewConsulta.getCita();
+                    consultaCollectionNewConsulta.setCita(cita);
+                    consultaCollectionNewConsulta = em.merge(consultaCollectionNewConsulta);
+                    if (oldCitaOfConsultaCollectionNewConsulta != null && !oldCitaOfConsultaCollectionNewConsulta.equals(cita)) {
+                        oldCitaOfConsultaCollectionNewConsulta.getConsultaCollection().remove(consultaCollectionNewConsulta);
+                        oldCitaOfConsultaCollectionNewConsulta = em.merge(oldCitaOfConsultaCollectionNewConsulta);
                     }
                 }
             }
@@ -172,10 +173,10 @@ public class CitaJpaController1 implements Serializable {
                 paciente.getCitaList().remove(cita);
                 paciente = em.merge(paciente);
             }
-            List<Consulta> consultaList = cita.getConsultaList();
-            for (Consulta consultaListConsulta : consultaList) {
-                consultaListConsulta.setCita(null);
-                consultaListConsulta = em.merge(consultaListConsulta);
+            Collection<Consulta> consultaCollection = cita.getConsultaCollection();
+            for (Consulta consultaCollectionConsulta : consultaCollection) {
+                consultaCollectionConsulta.setCita(null);
+                consultaCollectionConsulta = em.merge(consultaCollectionConsulta);
             }
             em.remove(cita);
             utx.commit();

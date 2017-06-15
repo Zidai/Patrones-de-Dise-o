@@ -80,6 +80,7 @@ public class CitaAgendada extends HttpServlet {
         c.setFecha(fechaCita);    
         Date horaCit = new Time(horaCita, 0, 0);
         c.setHora(horaCit);
+        c.setStatus("Pendiente");
         
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */

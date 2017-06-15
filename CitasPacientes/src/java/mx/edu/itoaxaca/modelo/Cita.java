@@ -6,8 +6,8 @@
 package mx.edu.itoaxaca.modelo;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -42,7 +42,7 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Cita implements Serializable {
 
     @OneToMany(mappedBy = "cita")
-    private List<Consulta> consultaList;
+    private Collection<Consulta> consultaCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -136,12 +136,12 @@ public class Cita implements Serializable {
     }
 
     @XmlTransient
-    public List<Consulta> getConsultaList() {
-        return consultaList;
+    public Collection<Consulta> getConsultaCollection() {
+        return consultaCollection;
     }
 
-    public void setConsultaList(List<Consulta> consultaList) {
-        this.consultaList = consultaList;
+    public void setConsultaCollection(Collection<Consulta> consultaCollection) {
+        this.consultaCollection = consultaCollection;
     }
     
 }

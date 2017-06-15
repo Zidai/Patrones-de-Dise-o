@@ -26,6 +26,9 @@
             <br>
             <br>
             <a href="listaCitasOpciones.jsp">Citas</a>
+            <br>
+            <br>
+            <a href="listaConsultas.jsp">Todas las consultas</a>
         </center>>
     </body>
 </html>

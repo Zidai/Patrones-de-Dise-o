@@ -98,7 +98,14 @@ public class NuevaCita extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<center>");
-            out.println("<h1>Mayo</h1>");
+            LocalDate dia;
+            dia= LocalDate.now();
+            int numeroMes = dia.getMonthValue();
+            mes = numeroMes;
+            anio = dia.getYear();
+            int hoy= dia.getDayOfMonth();
+            int controlSem=1;
+            out.println("<h1>"+mesAString(mes+1)+"</h1>");
             out.println("<label>Paciente: "+p.getNombre()+"</label>");
             out.println("<br>");
             out.println("<label>Sexo: "+p.getSexo()+"</label>");
@@ -112,17 +119,11 @@ public class NuevaCita extends HttpServlet {
 
             out.println("<label>Fecha de Nacimiento: "+diaNac+" de "+mesNac+" de "+anioNac+"</label>");
             out.println("<br>");
-            LocalDate dia;
-            dia= LocalDate.now();
-            int numeroMes = dia.getMonthValue();
-            mes = numeroMes;
-            anio = dia.getYear();
-            int hoy= dia.getDayOfMonth();
-            int controlSem=1;
+            
             out.println("<table>");
             out.println("<tr>");
             for(int i=1;i<=dia.lengthOfMonth();i++){
-                if(i>=hoy && listaCitas.size()<10){
+                if(i>=hoy && listaCitas.size()<70){
                     out.println("<td><a href='HoraCita?DiaCita="+i+
                             "&IdPaciente="+idPaciente+
                             "'>"+i+"</a></td>");

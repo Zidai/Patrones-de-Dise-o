@@ -48,7 +48,7 @@ public class ConsultaJpaController implements Serializable {
             }
             em.persist(consulta);
             if (cita != null) {
-                cita.getConsultaList().add(consulta);
+                cita.getConsultaCollection().add(consulta);
                 cita = em.merge(cita);
             }
             utx.commit();
@@ -80,11 +80,11 @@ public class ConsultaJpaController implements Serializable {
             }
             consulta = em.merge(consulta);
             if (citaOld != null && !citaOld.equals(citaNew)) {
-                citaOld.getConsultaList().remove(consulta);
+                citaOld.getConsultaCollection().remove(consulta);
                 citaOld = em.merge(citaOld);
             }
             if (citaNew != null && !citaNew.equals(citaOld)) {
-                citaNew.getConsultaList().add(consulta);
+                citaNew.getConsultaCollection().add(consulta);
                 citaNew = em.merge(citaNew);
             }
             utx.commit();
@@ -123,7 +123,7 @@ public class ConsultaJpaController implements Serializable {
             }
             Cita cita = consulta.getCita();
             if (cita != null) {
-                cita.getConsultaList().remove(consulta);
+                cita.getConsultaCollection().remove(consulta);
                 cita = em.merge(cita);
             }
             em.remove(consulta);

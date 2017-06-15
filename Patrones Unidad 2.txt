@@ -2,6 +2,22 @@ Iterador
 Funciona con HashMap.
 
 Composicion
+Libro:
+título 
+año de edición 
+  temas
+    subtemas 
+      numero de página
+
+Revista:
+título 
+año de edición 
+  artículos 
+    numero de página 
+    autor.
+
+
+
 Funciona con estructuras de arbol.
 
 Patron Decorador
@@ -84,6 +100,7 @@ Ejemplo de la Estructura:
 |———————————————————————|   |——————————————————————|
                                        ^
                                        |
+
                                        |
                                 |————————————————|
                                 | DecoradorBoton |
@@ -389,26 +406,6 @@ TUTORIAL JEE 7 JAVA
   b) Formar la lista con formulario
    out.println ("<form id='selpa' action='selecinar'>"");
                ("<form id='selpa' action='selecinar'>"");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

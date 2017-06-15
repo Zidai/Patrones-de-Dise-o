@@ -137,7 +137,7 @@ public class Paciente implements Serializable {
 
     @Override
     public String toString() {
-        return "mx.edo.itoaxaca.modelo.Paciente[ idpaciente=" + idpaciente + " ]";
+        return "mx.edu.itoaxaca.modelo.Paciente[ idpaciente=" + idpaciente + " ]";
     }
 
     @XmlTransient

@@ -94,6 +94,9 @@ public class ResultadosNombre extends HttpServlet {
                 +"<td class='datos'>HORA</td>"
                 +"<td class='datos'>FECHA</td>"
                 +"<td class='datos'>ID PACIENTE</td>"
+                +"<td class='datos'>STATUS</td>"
+                +"<td class='datos'>CONSULTA</td>"
+                +"<td class='datos'>OPCIONES</td></tr>"
             );
             for(int i=0;i<listaCitas.size();i++){
                 int idCita= listaCitas.get(i).getIdcita();
@@ -110,7 +113,10 @@ public class ResultadosNombre extends HttpServlet {
                   +"<td class='datos'>"+calF.get(Calendar.DAY_OF_MONTH)+
                         "/"+mesAString(calF.get(Calendar.MONTH))+
                         "/"+calF.get(Calendar.YEAR)+"</td>"
-                  +"<td class='datos'>"+idPaciente+"</td>"        
+                  +"<td class='datos'>"+idPaciente+"</td>" 
+                  +"<td class='datos'>"+listaCitas.get(i).getStatus()+"</td>"
+                  +"<td class='datos'><a href='RealizarConsulta?IdCita="+idCita+"'>CONSULTA</a></td>"
+                  +"<td class='datos'>|<a href='ElegirNuevoDia?IdCita="+idCita+"&IdPaciente="+idPaciente+"'>EDITAR</a>||<a href='EliminarCita?IdCita="+idCita+"'>ELIMINAR</a>|</td>"
                 );
             }
             out.println("</table>");
